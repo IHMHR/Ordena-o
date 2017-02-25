@@ -17,6 +17,7 @@ namespace Ordenação
             foreach (var item in valores)
             {
                 Console.Write(item);
+                Console.WriteLine();
             }
 
             Console.ReadLine();
