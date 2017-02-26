@@ -12,7 +12,7 @@ namespace Ordenação
         {
             int[] valores = { 5, 6, 4, 7, 3, 8, 1, 9, 0, 2 };
 
-            Ordenações.Inserção(ref valores);
+            Ordenações.Seleção(ref valores);
 
             foreach (var item in valores)
             {
@@ -44,7 +44,6 @@ namespace Ordenação
 
         public static void Inserção(ref int[] vetor)
         {
-            //{ 5, 6, 4, 7, 3, 8, 1, 9, 0, 2 }
             for (int i = 0; i < vetor.Length; i++)
             {
                 int atual = vetor[i];
@@ -56,6 +55,29 @@ namespace Ordenação
                 }
 
                 vetor[j + 1] = atual;
+            }
+        }
+
+        public static void Seleção(ref int[] vetor)
+        {
+            for (int i = 0; i < vetor.Length - 1; i++)
+            {
+                int menor = i;
+
+                for (int j = i + 1; j < vetor.Length; j++)
+                {
+                    if (vetor[j] < vetor[menor])
+                    {
+                        menor = j;
+                    }
+                }
+
+                if (menor != i)
+                {
+                    vetor[i] = vetor[i] ^ vetor[menor];
+                    vetor[menor] = vetor[menor] ^ vetor[i];
+                    vetor[i] = vetor[i] ^ vetor[menor];
+                }
             }
         }
     }
