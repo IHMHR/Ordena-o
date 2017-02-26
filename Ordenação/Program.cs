@@ -12,7 +12,7 @@ namespace Ordenação
         {
             int[] valores = { 5, 6, 4, 7, 3, 8, 1, 9, 0, 2 };
 
-            Ordenações.Seleção(ref valores);
+            Ordenações.Heap(ref valores);
 
             foreach (var item in valores)
             {
@@ -78,6 +78,62 @@ namespace Ordenação
                     vetor[menor] = vetor[menor] ^ vetor[i];
                     vetor[i] = vetor[i] ^ vetor[menor];
                 }
+            }
+        }
+
+        public static void Mistura(ref int[] vetor)
+        {
+            throw new NotImplementedException("Metodo para ser implementado");
+        }
+
+        public static void Quick(ref int[] vetor)
+        {
+            throw new NotImplementedException("Metodo para ser implementado");
+        }
+
+        public static void Heap(ref int[] vetor)
+        {
+            int n = vetor.Length;
+            int i = n / 2, pai, filho, t;
+            for(;;)
+            {
+                if (i > 0)
+                {
+                    i--;
+                    t = vetor[i];
+                }
+                else
+                {
+                    n--;
+                    if (n == 0)
+                    {
+                        return;
+                    }
+                    t = vetor[n];
+                    vetor[n] = vetor[0];
+                }
+                pai = i;
+                filho = i * 2 + 1;
+                while (filho < n)
+                {
+                    if ((filho + 1 < n) && (vetor[filho + 1] > vetor[filho]))
+                    {
+                        filho++;
+                    }
+
+                    if (vetor[filho] > t)
+                    {
+                        vetor[pai] = vetor[filho];
+                        pai = filho;
+                        filho = pai * 2 + 1;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                vetor[pai] = t;
             }
         }
     }
